@@ -1,13 +1,11 @@
 import axios from "axios";
 import { CustomError } from "@/app/utils/CustomError";
-import { ISignIn } from "..";
+import { ISignIn } from "../types";
+import { ApiAxiosInterceptor } from "@/app/react-query/axios";
 
 export const signInUser = async (data: ISignIn) => {
   try {
-    const response = await axios.post(
-      "http://localhost:3001/api/users/signin",
-      data
-    );
+    const response = await ApiAxiosInterceptor.post("/api/users/signin", data);
     if (response.status >= 200 && response.status < 300) {
       return response.data;
     } else {

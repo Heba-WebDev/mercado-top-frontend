@@ -6,7 +6,7 @@ import { signUpUser } from "../api-signup";
 import { ISignUp } from "../types";
 import { toast } from "react-toastify";
 import { CustomError } from "@/app/utils/CustomError";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -43,14 +43,13 @@ export default function SignUpForm() {
     confirmPassword: "",
     country: "",
   };
+  const router = useRouter();
 
   const handleSubmit = async (values: ISignUp) => {
     try {
       const res = await mutateAsync(values);
       toast.success(res?.message);
-      setTimeout(() => {
-        redirect("/signin");
-      }, 3000);
+      router.push("/signin");
     } catch (error: unknown) {
       if (error instanceof Error) {
         const customError = error as CustomError;

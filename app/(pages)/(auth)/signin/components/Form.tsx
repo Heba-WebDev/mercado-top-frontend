@@ -4,9 +4,9 @@ import * as Yup from "yup";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { CustomError } from "@/app/utils/CustomError";
-import { redirect } from "next/navigation";
 import { signInUser } from "../api-signin";
-import { ISignIn } from "..";
+import { ISignIn } from "../types";
+import { useRouter } from "next/navigation";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -22,6 +22,7 @@ interface FormValues {
 }
 
 export default function SignUpForm() {
+  const router = useRouter();
   const { mutateAsync } = useMutation({
     mutationFn: signInUser,
     mutationKey: ["signin"],
@@ -35,9 +36,7 @@ export default function SignUpForm() {
     try {
       const res = await mutateAsync(values);
       toast.success(res?.message);
-      setTimeout(() => {
-        redirect("/");
-      }, 3000);
+      router.push("/");
     } catch (error: unknown) {
       if (error instanceof Error) {
         const customError = error as CustomError;

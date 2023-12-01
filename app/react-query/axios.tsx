@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001";
+const URL = process.env.BASE_URL as string;
 
 export const ApiAxiosInterceptor = axios.create({
-  baseURL: baseURL,
+  baseURL: "http://localhost:3001",
 });
