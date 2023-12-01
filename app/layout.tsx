@@ -3,6 +3,9 @@ import { Raleway } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/globals/Navbar";
 import Head from "next/head";
+import Providers from "./react-query/provider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const oswald = Raleway({
   subsets: ["latin"],
@@ -25,8 +28,12 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico"></link>
       </Head>
       <body className={`${oswald.className}`}>
-        <Navbar />
-        {children}
+        <Providers>
+          <Navbar />
+
+          {children}
+          <ToastContainer />
+        </Providers>
       </body>
     </html>
   );
