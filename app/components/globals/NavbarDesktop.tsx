@@ -10,16 +10,19 @@ const overlock = Overlock({
 export default function NavbarDesktop() {
   return (
     <nav className="hidden md:flex items-center justify-between container mx-auto pt-4 pb-8">
-      <div className={`${overlock.className} uppercase flex items-center mt-2`}>
+      <Link
+        href="/"
+        className={`${overlock.className} uppercase flex items-center mt-2`}
+      >
         <Image
           src="/images/globals/logo.svg"
           alt="mercado top"
           width={25}
           height={50}
-          objectFit="cover"
+          style={{ width: "25px", height: "50px" }}
         />
         <span className=" font-black text-lg">MercadoTop</span>
-      </div>
+      </Link>
       <div className="flex items-center gap-5 mt-2">
         <ul className="flex items-center gap-6">
           <Link href="/products" className="">
