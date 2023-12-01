@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Overlock } from "next/font/google";
+import Link from "next/link";
 const overlock = Overlock({
   subsets: ["latin"],
   weight: ["400", "700", "900"],
@@ -14,16 +15,19 @@ export default function NavbarMobile() {
   };
   return (
     <nav className="relative md:hidden flex items-center justify-between container mx-auto py-4 px-2">
-      <div className={`${overlock.className} uppercase flex items-center`}>
+      <Link
+        href="/"
+        className={`${overlock.className} uppercase flex items-center`}
+      >
         <Image
           src="/images/globals/logo.svg"
           alt="mercado top"
           width={25}
           height={50}
-          objectFit="cover"
+          style={{ width: "25px", height: "50px" }}
         />
         <span className=" font-black text-lg">MercadoTop</span>
-      </div>
+      </Link>
       <button onClick={handleClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +55,7 @@ export default function NavbarMobile() {
           <li>About Us</li>
         </ul>
         <div className="flex justify-center py-6">
-          <button>Sign in</button>
+          <button>Sign up</button>
         </div>
       </div>
     </nav>
