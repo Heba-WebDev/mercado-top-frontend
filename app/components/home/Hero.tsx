@@ -33,7 +33,6 @@ export default function Hero() {
           src="/images/home/hero-img.webp"
           width={1000}
           height={300}
-          objectFit="cover"
           className="mx-auto"
           alt="woman in her home with a laptop"
         />
