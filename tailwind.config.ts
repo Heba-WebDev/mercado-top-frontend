@@ -6,6 +6,9 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  variants: {
+    borderColor: ['responsive', 'hover', 'focus', 'active'],
+  },
   theme: {
     extend: {
       backgroundImage: {
