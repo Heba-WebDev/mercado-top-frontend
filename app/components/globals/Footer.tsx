@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Overlock } from "next/font/google";
 const overlock = Overlock({
   subsets: ["latin"],
@@ -7,6 +9,11 @@ const overlock = Overlock({
 });
 
 export default function Footer() {
+  const pathname = usePathname();
+  const auth = pathname === "/signup" || pathname === "/signin";
+  if (auth) {
+    return null;
+  }
   return (
     <footer className=" bg-black text-white py-4 px-2 mt-auto">
       <div className=" container mx-auto flex gap-4 md:gap-0 flex-col md:flex-row md:justify-between md:items-center">

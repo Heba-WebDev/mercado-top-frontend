@@ -1,6 +1,8 @@
+"use client";
 import { Overlock } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const overlock = Overlock({
   subsets: ["latin"],
@@ -8,6 +10,27 @@ const overlock = Overlock({
 });
 
 export default function NavbarDesktop() {
+  const pathname = usePathname();
+  const auth = pathname === "/signup" || pathname === "/signin";
+  if (auth) {
+    return (
+      <nav className="hidden md:flex items-center justify-between container mx-auto pt-4 pb-8">
+        <Link
+          href="/"
+          className={`${overlock.className} uppercase flex items-center mt-2`}
+        >
+          <Image
+            src="/images/globals/logo.svg"
+            alt="mercado top"
+            width={25}
+            height={50}
+            style={{ width: "25px", height: "50px" }}
+          />
+          <span className=" font-black text-lg">MercadoTop</span>
+        </Link>
+      </nav>
+    );
+  }
   return (
     <nav className="hidden md:flex items-center justify-between container mx-auto pt-4 pb-8">
       <Link

@@ -17,14 +17,14 @@ export default function AboutUs() {
             About Us
           </h2>
         </div>
-        <div className=" grid md:grid-cols-2 gap-4">
-          <p className=" max-w-[650px]">
+        <div className=" grid md:grid-cols-2 gap-6">
+          <p className="max-w-[600px] hyphens-auto">
             At Mercado Top, we believe in the power of community and the
             importance of environmental sustainability. Our mission is to create
             a space where everyone can turn their waste into a source of income,
             thereby reducing waste and contributing to a healthier planet.
           </p>
-          <p className=" max-w-[650px] justify-self-end">
+          <p className="max-w-[600px] md:justify-self-end hyphens-auto">
             Our platform is more than just a second-hand market; it’s a movement
             towards conscious consumption and waste reduction. By giving a
             second life to items that would otherwise be discarded, we’re not

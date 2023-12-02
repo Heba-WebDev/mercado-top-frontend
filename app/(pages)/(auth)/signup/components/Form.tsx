@@ -9,6 +9,7 @@ import { CustomError } from "@/app/utils/CustomError";
 import { useRouter } from "next/navigation";
 import { countryList } from "@/app/utils/ListOfCountries";
 import Select from "react-select";
+import { useEffect, useState } from "react";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -34,6 +35,8 @@ interface FormValues {
 }
 
 export default function SignUpForm() {
+  const id = Date.now().toString();
+  const [isMounted, setIsMounted] = useState(false);
   const { mutateAsync } = useMutation({
     mutationFn: signUpUser,
     mutationKey: ["signup"],
@@ -63,6 +66,7 @@ export default function SignUpForm() {
       }
     }
   };
+  useEffect(() => setIsMounted(true), []);
   return (
     <Formik
       initialValues={initialValues}
@@ -151,45 +155,49 @@ export default function SignUpForm() {
                 "Country"
               )}
             </label>
-            <Select
-              id="country"
-              name="country"
-              options={countryList}
-              onChange={(option) =>
-                formik.setFieldValue("country", option?.value)
-              }
-              value={countryList.find(
-                (option) => option.value === formik.values.country
-              )}
-              styles={{
-                control: (provided, state) => ({
-                  ...provided,
-                  backgroundColor: "#F0EDE8",
-                  border: 0,
-                  borderColor: state.isFocused ? "green" : provided.borderColor,
-                  boxShadow: state.isFocused
-                    ? "0 0 0 1px green"
-                    : provided.boxShadow,
-                  "&:hover": {
+            {isMounted && (
+              <Select
+                id={id}
+                name="country"
+                options={countryList}
+                onChange={(option) =>
+                  formik.setFieldValue("country", option?.value)
+                }
+                value={countryList.find(
+                  (option) => option.value === formik.values.country
+                )}
+                styles={{
+                  control: (provided, state) => ({
+                    ...provided,
+                    backgroundColor: "#F0EDE8",
+                    border: 0,
                     borderColor: state.isFocused
                       ? "green"
                       : provided.borderColor,
-                  },
-                }),
-                option: (provided, state) => ({
-                  ...provided,
-                  color: state.isSelected ? "green" : provided.color,
-                  backgroundColor: state.isSelected
-                    ? "#F0EDE8"
-                    : provided.backgroundColor,
-                  "&:hover": {
-                    color: "green",
-                    backgroundColor: "#F0EDE8",
-                  },
-                }),
-              }}
-              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-green-700"
-            />
+                    boxShadow: state.isFocused
+                      ? "0 0 0 1px green"
+                      : provided.boxShadow,
+                    "&:hover": {
+                      borderColor: state.isFocused
+                        ? "green"
+                        : provided.borderColor,
+                    },
+                  }),
+                  option: (provided, state) => ({
+                    ...provided,
+                    color: state.isSelected ? "green" : provided.color,
+                    backgroundColor: state.isSelected
+                      ? "#F0EDE8"
+                      : provided.backgroundColor,
+                    "&:hover": {
+                      color: "green",
+                      backgroundColor: "#F0EDE8",
+                    },
+                  }),
+                }}
+                className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-green-700"
+              />
+            )}
           </div>
 
           <button
