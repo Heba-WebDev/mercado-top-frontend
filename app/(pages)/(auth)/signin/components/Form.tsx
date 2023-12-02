@@ -56,7 +56,7 @@ export default function SignUpForm() {
       className="flex flex-col gap-4 w-full"
     >
       {(formik) => (
-        <Form>
+        <Form className="grid gap-3">
           <div className="flex flex-col gap-2">
             <label htmlFor="email">
               {formik.touched.email && formik.errors.email ? (

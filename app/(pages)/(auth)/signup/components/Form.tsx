@@ -7,6 +7,8 @@ import { ISignUp } from "../types";
 import { toast } from "react-toastify";
 import { CustomError } from "@/app/utils/CustomError";
 import { useRouter } from "next/navigation";
+import { countryList } from "@/app/utils/ListOfCountries";
+import Select from "react-select";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -69,7 +71,7 @@ export default function SignUpForm() {
       className="flex flex-col gap-4 w-full"
     >
       {(formik) => (
-        <Form>
+        <Form className="grid gap-3">
           <div className="flex flex-col gap-2">
             <label htmlFor="name">
               {formik.touched.name && formik.errors.name ? (
@@ -149,19 +151,45 @@ export default function SignUpForm() {
                 "Country"
               )}
             </label>
-            <select
+            <Select
+              id="country"
               name="country"
-              className="bg-[#F0EDE8] py-3  px-1 rounded-lg focus:outline-green-700"
-              onChange={(event) => {
-                formik.setFieldValue("country", event.target.value);
+              options={countryList}
+              onChange={(option) =>
+                formik.setFieldValue("country", option?.value)
+              }
+              value={countryList.find(
+                (option) => option.value === formik.values.country
+              )}
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: "#F0EDE8",
+                  border: 0,
+                  borderColor: state.isFocused ? "green" : provided.borderColor,
+                  boxShadow: state.isFocused
+                    ? "0 0 0 1px green"
+                    : provided.boxShadow,
+                  "&:hover": {
+                    borderColor: state.isFocused
+                      ? "green"
+                      : provided.borderColor,
+                  },
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  color: state.isSelected ? "green" : provided.color,
+                  backgroundColor: state.isSelected
+                    ? "#F0EDE8"
+                    : provided.backgroundColor,
+                  "&:hover": {
+                    color: "green",
+                    backgroundColor: "#F0EDE8",
+                  },
+                }),
               }}
-              value={formik.values.country}
-            >
-              <option value="">Select a country</option>
-              <option value="brazil">Brazil</option>
-              <option value="argentina">Argentina</option>
-              <option value="benin">Benin</option>
-            </select>
+              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-green-700"
+            />
           </div>
 
           <button
