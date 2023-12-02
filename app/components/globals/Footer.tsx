@@ -8,7 +8,7 @@ const overlock = Overlock({
 
 export default function Footer() {
   return (
-    <footer className=" bg-black text-white py-4 px-2">
+    <footer className=" bg-black text-white py-4 px-2 mt-auto">
       <div className=" container mx-auto flex gap-4 md:gap-0 flex-col md:flex-row md:justify-between md:items-center">
         <div className=" text-green-700">
           <Link
