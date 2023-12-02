@@ -6,6 +6,7 @@ import Head from "next/head";
 import Providers from "./react-query/provider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./components/globals/Footer";
 
 const oswald = Raleway({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Navbar />
 
           {children}
+          <Footer />
           <ToastContainer />
         </Providers>
       </body>
