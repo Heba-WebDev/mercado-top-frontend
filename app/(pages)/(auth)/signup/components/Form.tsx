@@ -90,7 +90,7 @@ export default function SignUpForm() {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.name}
-              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-green-700"
+              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -107,7 +107,7 @@ export default function SignUpForm() {
               type="email"
               onChange={formik.handleChange}
               value={formik.values.email}
-              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-green-700"
+              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -125,7 +125,7 @@ export default function SignUpForm() {
               autoComplete="true"
               onChange={formik.handleChange}
               value={formik.values.password}
-              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-green-700"
+              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -144,7 +144,7 @@ export default function SignUpForm() {
               autoComplete="true"
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
-              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-green-700"
+              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -195,14 +195,14 @@ export default function SignUpForm() {
                     },
                   }),
                 }}
-                className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-green-700"
+                className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
               />
             )}
           </div>
 
           <button
             type="submit"
-            className=" bg-green-700 hover:bg-green-600 py-3  px-1 text-white rounded-lg mt-4 w-full"
+            className=" bg-[#33A077] hover:bg-[#227356] py-3  px-1 text-white rounded-lg mt-4 w-full"
           >
             Sign up
           </button>

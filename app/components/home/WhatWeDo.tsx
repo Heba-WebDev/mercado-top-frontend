@@ -5,7 +5,7 @@ export default function WhatWeDo() {
   return (
     <section className="py-14 px-2 container mx-auto grid gap-14">
       <div>
-        <h2 className=" text-green-700  font-semibold text-3xl lg:text-4xl text-center">
+        <h2 className=" text-[#33A077] font-semibold text-3xl lg:text-4xl text-center">
           What We Do
         </h2>
       </div>
