@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <footer className=" bg-black text-white py-4 px-2 mt-auto">
       <div className=" container mx-auto flex gap-4 md:gap-0 flex-col md:flex-row md:justify-between md:items-center">
-        <div className=" text-green-700">
+        <div className=" text-[#33A077] mx-auto md:mx-0">
           <Link
             href="/"
             className={`${overlock.className} uppercase flex items-center mt-2`}
@@ -32,7 +32,7 @@ export default function Footer() {
             <span className=" font-black text-lg">MercadoTop</span>
           </Link>
         </div>
-        <div className="text-[#666]">
+        <div className="text-[#666] text-center md:text-left">
           <span>All rights reserved © {new Date().getFullYear()}</span>
         </div>
       </div>
