@@ -51,7 +51,7 @@ export default function NavbarDesktop() {
           <Link href="/products" className="">
             <li
               className="hover:border-4
-          hover:border-x-0 hover:border-t-0 hover:border-b-green-700"
+          hover:border-x-0 hover:border-t-0 hover:border-b-[#33A077]"
             >
               Products
             </li>
@@ -59,7 +59,7 @@ export default function NavbarDesktop() {
           <Link href="">
             <li
               className="hover:border-4
-          hover:border-x-0 hover:border-t-0 hover:border-b-green-700"
+          hover:border-x-0 hover:border-t-0 hover:border-b-[#33A077]"
             >
               How it works
             </li>
@@ -67,7 +67,7 @@ export default function NavbarDesktop() {
           <Link href="">
             <li
               className="hover:border-4
-          hover:border-x-0 hover:border-t-0 hover:border-b-green-700"
+          hover:border-x-0 hover:border-t-0 hover:border-b-[#33A077]"
             >
               About Us
             </li>
@@ -76,7 +76,7 @@ export default function NavbarDesktop() {
         <div className="">
           <Link
             href="/signup"
-            className=" bg-green-700 hover:bg-green-600 px-8 py-3 text-lg
+            className=" bg-[#33A077] hover:bg-[#227356] px-8 py-3 text-lg
           rounded-lg text-white"
           >
             Sign up
