@@ -16,7 +16,7 @@ export default function SignUp() {
           <SignUpForm />
         </div>
       </div>
-      <Link href="/signin" className="text-green-700 text-center underline">
+      <Link href="/signin" className="text-[#33A077] text-center underline">
         Already have an account? Sign in
       </Link>
     </main>
