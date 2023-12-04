@@ -8,7 +8,7 @@ export default function Hero() {
     justify-between gap-4 px-2"
     >
       <div className=" relative z-10 justify-center gap-3">
-        <h1 className="text-center text-green-700 text-6xl lg:text-6xl font-bold pb-3">
+        <h1 className="text-center text-[#33A077] text-6xl lg:text-6xl font-bold pb-3">
           Do not throw it, sell it!
         </h1>
         <div className="w-full pb-6">
@@ -23,7 +23,7 @@ export default function Hero() {
         <div className="flex items-center">
           <Link
             href="/market"
-            className="mx-auto bg-green-700 hover:bg-green-600 text-white font-semibold py-4
+            className="mx-auto bg-[#33A077] hover:bg-[#227356] text-white font-semibold py-4
         px-8 rounded-lg"
           >
             Go to market

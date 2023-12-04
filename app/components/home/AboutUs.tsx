@@ -13,7 +13,7 @@ export default function AboutUs() {
 
       <div className=" text-lg text-[#666] flex flex-col gap-8">
         <div>
-          <h2 className="  text-green-700  font-semibold text-3xl lg:text-4xl">
+          <h2 className="  text-[#33A077]  font-semibold text-3xl lg:text-4xl">
             About Us
           </h2>
         </div>
