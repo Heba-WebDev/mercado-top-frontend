@@ -15,7 +15,10 @@ export default function NavbarMobile() {
     setIsNavOpen(!isNavOpen);
   };
   const pathname = usePathname();
-  const auth = pathname === "/signup" || pathname === "/signin";
+  const auth =
+    pathname === "/signup" ||
+    pathname === "/signin" ||
+    pathname === "/reset-password";
   if (auth) {
     return (
       <nav className="relative md:hidden flex items-center justify-between container mx-auto py-4 px-2">

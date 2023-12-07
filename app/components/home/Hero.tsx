@@ -8,7 +8,7 @@ export default function Hero() {
     justify-between gap-4 px-2"
     >
       <div className=" relative z-10 justify-center gap-3">
-        <h1 className="text-center text-[#33A077] text-6xl lg:text-6xl font-bold pb-3">
+        <h1 className="text-center text-[#33A077] text-4xl md:text-6xl lg:text-6xl font-bold pb-3">
           Do not throw it, sell it!
         </h1>
         <div className="w-full pb-6">

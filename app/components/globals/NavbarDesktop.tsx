@@ -11,7 +11,10 @@ const overlock = Overlock({
 
 export default function NavbarDesktop() {
   const pathname = usePathname();
-  const auth = pathname === "/signup" || pathname === "/signin";
+  const auth =
+    pathname === "/signup" ||
+    pathname === "/signin" ||
+    pathname === "/reset-password";
   if (auth) {
     return (
       <nav className="hidden md:flex items-center justify-between container mx-auto pt-4 pb-8">

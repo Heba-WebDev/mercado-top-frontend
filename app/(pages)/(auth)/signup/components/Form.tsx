@@ -1,7 +1,7 @@
 "use client";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { signUpUser } from "../api-signup";
 import { ISignUp } from "../types";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { countryList } from "@/app/utils/ListOfCountries";
 import Select from "react-select";
 import { useEffect, useState } from "react";
+import Spinner from "@/app/components/globals/Spinner";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -204,7 +205,7 @@ export default function SignUpForm() {
             type="submit"
             className=" bg-[#33A077] hover:bg-[#227356] py-3  px-1 text-white rounded-lg mt-4 w-full"
           >
-            Sign up
+            {formik.isSubmitting ? <Spinner /> : "Sign up"}
           </button>
         </Form>
       )}

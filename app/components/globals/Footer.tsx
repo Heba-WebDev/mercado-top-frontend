@@ -10,7 +10,10 @@ const overlock = Overlock({
 
 export default function Footer() {
   const pathname = usePathname();
-  const auth = pathname === "/signup" || pathname === "/signin";
+  const auth =
+    pathname === "/signup" ||
+    pathname === "/signin" ||
+    pathname === "/reset-password";
   if (auth) {
     return null;
   }

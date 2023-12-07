@@ -63,8 +63,8 @@ const ForgotPassModalOpen: React.FC<Props> = ({ closeModal }) => {
                   alt="close"
                   width={25}
                   height={10}
-                  style={{ width: "25px", height: "10px" }}
-                  className=" absolute top-7 right-5 bg-white rounded-full"
+                  style={{ width: "25px", height: "20px" }}
+                  className=" absolute top-8 right-5 bg-white rounded-full"
                 />
               </button>
 

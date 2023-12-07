@@ -9,6 +9,7 @@ import { signInUser } from "../api-signin";
 import { ISignIn } from "../types";
 import { useRouter } from "next/navigation";
 import ForgotPassModalOpen from "./ForgotPasswordModal";
+import Spinner from "@/app/components/globals/Spinner";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -114,7 +115,7 @@ export default function SignUpForm() {
               type="submit"
               className=" bg-[#33A077] hover:bg-[#227356] py-3  px-1 text-white rounded-lg mt-4 w-full"
             >
-              Sign in
+              {formik.isSubmitting ? <Spinner /> : "Sign in"}
             </button>
           </Form>
         )}
