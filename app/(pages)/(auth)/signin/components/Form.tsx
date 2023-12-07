@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useMutation } from "@tanstack/react-query";
@@ -7,6 +8,7 @@ import { CustomError } from "@/app/utils/CustomError";
 import { signInUser } from "../api-signin";
 import { ISignIn } from "../types";
 import { useRouter } from "next/navigation";
+import ForgotPassModalOpen from "./ForgotPasswordModal";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -23,6 +25,7 @@ interface FormValues {
 
 export default function SignUpForm() {
   const router = useRouter();
+  const [isForgotPassModalOpen, setIsForgotPassModalOpen] = useState(false);
   const { mutateAsync } = useMutation({
     mutationFn: signInUser,
     mutationKey: ["signin"],
@@ -30,6 +33,10 @@ export default function SignUpForm() {
   const initialValues: FormValues = {
     email: "",
     password: "",
+  };
+
+  const handleForgetPassModal = () => {
+    setIsForgotPassModalOpen(!isForgotPassModalOpen);
   };
 
   const handleSubmit = async (values: ISignIn) => {
@@ -49,57 +56,69 @@ export default function SignUpForm() {
     }
   };
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-4 w-full"
-    >
-      {(formik) => (
-        <Form className="grid gap-3">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="email">
-              {formik.touched.email && formik.errors.email ? (
-                <p className=" text-red-600">{formik.errors.email}</p>
-              ) : (
-                "Email"
-              )}
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="password">
-              {formik.touched.password && formik.errors.password ? (
-                <p className=" text-red-600">{formik.errors.password}</p>
-              ) : (
-                "Password"
-              )}
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="true"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
-            />
-          </div>
-          <button
-            type="submit"
-            className=" bg-[#33A077] hover:bg-[#227356] py-3  px-1 text-white rounded-lg mt-4 w-full"
-          >
-            Sign in
-          </button>
-        </Form>
+    <>
+      {isForgotPassModalOpen && (
+        <ForgotPassModalOpen closeModal={handleForgetPassModal} />
       )}
-    </Formik>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 w-full"
+      >
+        {(formik) => (
+          <Form className="grid gap-3">
+            <div className="flex flex-col gap-2">
+              <label htmlFor="email">
+                {formik.touched.email && formik.errors.email ? (
+                  <p className=" text-red-600">{formik.errors.email}</p>
+                ) : (
+                  "Email"
+                )}
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+                className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="password">
+                {formik.touched.password && formik.errors.password ? (
+                  <p className=" text-red-600">{formik.errors.password}</p>
+                ) : (
+                  "Password"
+                )}
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="true"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
+              />
+            </div>
+            <button
+              type="button"
+              className=" text-[#33A077] text-right"
+              onClick={handleForgetPassModal}
+            >
+              Forgot your password?
+            </button>
+            <button
+              type="submit"
+              className=" bg-[#33A077] hover:bg-[#227356] py-3  px-1 text-white rounded-lg mt-4 w-full"
+            >
+              Sign in
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 }
