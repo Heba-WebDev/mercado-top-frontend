@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CustomError } from "@/app/utils/CustomError";
-import { ISignIn } from "../types";
+import { IForgotEmail, ISignIn } from "../types";
 import { ApiAxiosInterceptor } from "@/app/react-query/axios";
 
 export const signInUser = async (data: ISignIn) => {
@@ -17,5 +17,21 @@ export const signInUser = async (data: ISignIn) => {
     } else {
       throw error;
     }
+  }
+};
+
+export const SendForgotPasswordEmail = async (data: IForgotEmail) => {
+  try {
+    const response = await ApiAxiosInterceptor.post(
+      "/api/users/forgotPassword",
+      data
+    );
+    if (response.status >= 200 && response.status < 300) {
+      return response.data;
+    } else {
+      throw new CustomError(response);
+    }
+  } catch (error) {
+    throw error;
   }
 };
