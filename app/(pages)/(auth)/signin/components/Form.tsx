@@ -10,6 +10,8 @@ import { ISignIn } from "../types";
 import { useRouter } from "next/navigation";
 import ForgotPassModalOpen from "./ForgotPasswordModal";
 import Spinner from "@/app/components/globals/Spinner";
+import { addUser } from "@/app/store/users/slice";
+import { useAppDispatch } from "@/app/hooks/store";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -25,6 +27,7 @@ interface FormValues {
 }
 
 export default function SignUpForm() {
+  const disptach = useAppDispatch();
   const router = useRouter();
   const [isForgotPassModalOpen, setIsForgotPassModalOpen] = useState(false);
   const { mutateAsync } = useMutation({
@@ -44,6 +47,7 @@ export default function SignUpForm() {
     try {
       const res = await mutateAsync(values);
       toast.success(res?.message);
+      disptach(addUser(res.data));
       router.push("/");
     } catch (error: unknown) {
       if (error instanceof Error) {
