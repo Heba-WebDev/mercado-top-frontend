@@ -3,6 +3,7 @@ import { Overlock } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useAppSelector } from "@/app/hooks/store";
 
 const overlock = Overlock({
   subsets: ["latin"],
@@ -10,6 +11,7 @@ const overlock = Overlock({
 });
 
 export default function NavbarDesktop() {
+  const user = useAppSelector((state) => state.users);
   const pathname = usePathname();
   const auth =
     pathname === "/signup" ||
