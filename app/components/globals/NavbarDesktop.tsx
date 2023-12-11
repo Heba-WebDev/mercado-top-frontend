@@ -1,9 +1,12 @@
 "use client";
+import { useEffect, useState } from "react";
 import { Overlock } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/app/hooks/store";
+import { IMAGE_URL } from "@/app/utils/ImageBaseURL";
+import UserDropDown from "./UserDropDown";
 
 const overlock = Overlock({
   subsets: ["latin"],
@@ -11,12 +14,20 @@ const overlock = Overlock({
 });
 
 export default function NavbarDesktop() {
+  const [hasMounted, setHasMounted] = useState(false);
+  const [openUserDropDown, setOpenUserDropDown] = useState(false);
   const user = useAppSelector((state) => state.users);
   const pathname = usePathname();
   const auth =
     pathname === "/signup" ||
     pathname === "/signin" ||
     pathname === "/reset-password";
+  const handleUserDropDown = () => {
+    setOpenUserDropDown(!openUserDropDown);
+  };
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
   if (auth) {
     return (
       <nav className="hidden md:flex items-center justify-between container mx-auto pt-4 pb-8">
@@ -53,23 +64,23 @@ export default function NavbarDesktop() {
       </Link>
       <div className="flex items-center gap-5 mt-2">
         <ul className="flex items-center gap-6">
-          <Link href="/products" className="">
+          <Link href="/market" className="">
             <li
               className="hover:border-4
           hover:border-x-0 hover:border-t-0 hover:border-b-[#33A077]"
             >
-              Products
+              Market
             </li>
           </Link>
-          <Link href="">
+          <Link href="/#what-we-do">
             <li
               className="hover:border-4
           hover:border-x-0 hover:border-t-0 hover:border-b-[#33A077]"
             >
-              How it works
+              What We Do
             </li>
           </Link>
-          <Link href="">
+          <Link href="/#about-us">
             <li
               className="hover:border-4
           hover:border-x-0 hover:border-t-0 hover:border-b-[#33A077]"
@@ -79,13 +90,30 @@ export default function NavbarDesktop() {
           </Link>
         </ul>
         <div className="">
-          <Link
-            href="/signup"
-            className=" bg-[#33A077] hover:bg-[#227356] px-8 py-3 text-lg
+          {hasMounted && user.length === 0 && (
+            <Link
+              href="/signup"
+              className=" bg-[#33A077] hover:bg-[#227356] px-8 py-3 text-lg
           rounded-lg text-white"
-          >
-            Sign up
-          </Link>
+            >
+              Sign up
+            </Link>
+          )}
+          {hasMounted && user.length !== 0 && (
+            <div className="relative">
+              <button onClick={handleUserDropDown}>
+                <Image
+                  src={`${IMAGE_URL}${user[0].profile_picture}`}
+                  alt=""
+                  width={30}
+                  height={10}
+                  style={{ width: "auto", height: "auto" }}
+                  className=" rounded-full"
+                />
+              </button>
+              {openUserDropDown && <UserDropDown />}
+            </div>
+          )}
         </div>
       </div>
     </nav>
