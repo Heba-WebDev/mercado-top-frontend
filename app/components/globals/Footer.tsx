@@ -36,6 +36,10 @@ export default function Footer() {
           </Link>
         </div>
         <div className="text-[#666] text-center md:text-left">
+          Image by{" "}
+          <a href="https://www.freepik.com/free-psd/3d-illustration-person-with-glasses_27470336.htm?query=default%20user#from_view=detail_alsolike">
+            Freepik
+          </a>
           <span>All rights reserved © {new Date().getFullYear()}</span>
         </div>
       </div>

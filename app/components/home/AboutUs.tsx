@@ -11,7 +11,7 @@ export default function AboutUs() {
         />
       </div>
 
-      <div className=" text-lg text-[#666] flex flex-col gap-8">
+      <div className=" text-lg text-[#666] flex flex-col gap-8" id="about-us">
         <div>
           <h2 className="  text-[#33A077]  font-semibold text-3xl lg:text-4xl">
             About Us
