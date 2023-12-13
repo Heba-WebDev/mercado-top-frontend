@@ -17,6 +17,7 @@ export default function WhatWeDo() {
               title={card.title}
               description={card.description}
               link={card.link}
+              image={card.img}
             />
           );
         })}
