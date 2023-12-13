@@ -9,6 +9,7 @@ export const content = [
     we can make a difference.
     `,
     link: "",
+    img: "/images/home/protecting-planet.jpg",
   },
   {
     title: " Empowering Communities",
@@ -19,6 +20,7 @@ export const content = [
     a circular economy where everyone benefits.
     `,
     link: "",
+    img: "/images/home/empowering-communities.jpg",
   },
   {
     title: "Help You Make Money",
@@ -30,5 +32,6 @@ export const content = [
     initiative.
     `,
     link: "",
+    img: "/images/home/make-money.jpg",
   },
 ];
