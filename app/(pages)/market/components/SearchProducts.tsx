@@ -28,12 +28,12 @@ export default function SearchProducts() {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-      className=" relative flex flex-col gap-4 w-full "
+      className=" relative flex flex-col gap-4 w-full"
     >
       {(formik) => (
         <Form
           className="relative bg-white flex flex-col md:flex-row items-center w-full border
-        p-3 md:max-w-[880px] mx-auto rounded-lg gap-4 md:gap-0 mt-[-10%] md:mt-[-2.5%] z-30"
+        p-3  mx-auto rounded-lg gap-4 md:gap-0"
         >
           <div className="w-full relative mr-1">
             <input
@@ -75,9 +75,9 @@ export default function SearchProducts() {
           </div>
           <button
             type="submit"
-            className=" bg-[#33A077] hover:text-[#33A077]
-             hover:bg-white border-2 border-transparent hover:border-[#33A077] 
-             py-3  px-1 text-white md:max-w-[120px] w-full"
+            className="bg-white hover:bg-[#33A077] text-[#33A077]
+             border-2 hover:border-transparent border-[#33A077] 
+             py-3  px-1 hover:text-white md:max-w-[120px] w-full"
           >
             Search
           </button>
