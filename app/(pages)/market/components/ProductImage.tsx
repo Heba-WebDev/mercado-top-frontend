@@ -5,13 +5,14 @@ export interface imgae {
 }
 export default function ProductImage({ src }: imgae) {
   return (
-    <div className="w-full max-h-[210px] overflow-hidden bg-gray-50">
+    <div className="overflow-hidden">
       <Image
-        src={src}
+        src="/images/market/iphone-used.jpeg"
         alt=""
-        width={490}
-        height={80}
-        className=" bg-gray-50 object-cover overflow-hidden rounded-lg"
+        width={180}
+        height={180}
+        style={{ width: "620px", height: "165px" }}
+        className=" bg-gray-50 object-contain overflow-hidden rounded"
       />
     </div>
   );
