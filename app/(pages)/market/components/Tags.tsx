@@ -10,6 +10,7 @@ const tagStyles: { [key: string]: string } = {
   Appliances: "bg-lime-400",
   "Office Equipment": "bg-sky-400",
   Furnitures: "bg-cyan-500",
+  Others: "bg-indigo-300",
 };
 
 export default function Tags({ tag }: Tag) {
