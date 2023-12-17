@@ -11,6 +11,7 @@ import { countryList } from "@/app/utils/ListOfCountries";
 import Select from "react-select";
 import { useEffect, useState } from "react";
 import Spinner from "@/app/components/globals/Spinner";
+import { useAppSelector } from "@/app/hooks/store";
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -36,6 +37,17 @@ interface FormValues {
 }
 
 export default function SignUpForm() {
+  const user = useAppSelector((state) => state.users);
+  const router = useRouter();
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user.length !== 0) {
+      router.push("/market");
+    }
+    setLoading(false);
+  }, [user, router]);
   const id = Date.now().toString();
   const [isMounted, setIsMounted] = useState(false);
   const { mutateAsync } = useMutation({
@@ -49,7 +61,6 @@ export default function SignUpForm() {
     confirmPassword: "",
     country: "",
   };
-  const router = useRouter();
 
   const handleSubmit = async (values: ISignUp) => {
     try {
