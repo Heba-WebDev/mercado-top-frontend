@@ -9,12 +9,13 @@ export default function AddAProduct() {
         </h1>
         <p>Sell any item you have at home on Mercado Top</p>
       </div>
-      <button
+      <Link
+        href="market/sell"
         className=" bg-[#33A077] hover:bg-[#227356]
       py-3  px-1 text-white rounded-lg w-64 mx-auto uppercase font-medium"
       >
         Sell now
-      </button>
+      </Link>
     </div>
   );
 }
