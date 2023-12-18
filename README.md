@@ -2,6 +2,9 @@
 
 This project is a frontend for Mercado Top, a second hand market, built using Nextjs, Typescript and Redux Toolkit.
 
+![screencapture-landing-page](https://github.com/Heba-WebDev/mercado-top-frontend/assets/74996096/40072165-f890-4ca4-aa8c-a2b73ddca976)
+
+
 ## Technologies Used
 
 - **Next js**
