@@ -2,19 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 export default function AddAProduct() {
   return (
-    <div className="relative container mx-auto py-24 text-center grid gap-4 justify-center">
-      <div className="flex flex-col gap-4">
-        <h1 className="text-4xl md:text-5xl font-bold">
-          You no longer need it?
-        </h1>
-        <p>Sell any item you have at home on Mercado Top</p>
-      </div>
+    <div className="py-2 text-center grid gap-4 justify-end mb-12">
       <Link
         href="market/sell"
         className=" bg-[#33A077] hover:bg-[#227356]
-      py-3  px-1 text-white rounded-lg w-64 mx-auto uppercase font-medium"
+      py-3 px-1 rounded-lg w-60 flex items-center justify-center font-medium text-gray-100 gap-1"
       >
-        Sell now
+        <Image
+          src="/images/market/add.svg"
+          alt="add a product"
+          width={120}
+          height={20}
+          style={{ width: "20px", height: "auto" }}
+          className=""
+        />
+        Add New Product
       </Link>
     </div>
   );
