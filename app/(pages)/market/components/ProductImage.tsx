@@ -7,8 +7,9 @@ export default function ProductImage({ src }: imgae) {
   return (
     <div className="overflow-hidden">
       <Image
-        src="/images/market/iphone-used.jpeg"
+        src={src}
         alt=""
+        priority
         width={180}
         height={180}
         style={{ width: "620px", height: "165px" }}
