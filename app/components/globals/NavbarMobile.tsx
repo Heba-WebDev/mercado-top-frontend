@@ -72,18 +72,18 @@ export default function NavbarMobile() {
             <Image
               src="/images/globals/menu-burger.svg"
               alt="open"
-              width={20}
+              width={25}
               height={10}
-              style={{ width: "20px", height: "auto" }}
+              style={{ width: "18px", height: "auto" }}
             />
           )}
           {isNavOpen && (
             <Image
               src="/images/globals/x.svg"
               alt="open"
-              width={20}
+              width={25}
               height={10}
-              style={{ width: "20px", height: "auto" }}
+              style={{ width: "18px", height: "auto" }}
             />
           )}
         </button>

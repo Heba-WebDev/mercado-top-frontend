@@ -7,16 +7,18 @@ import { Form, Formik, FormikHelpers } from "formik";
 import Select from "react-select";
 import { CATEGORIES } from "@/app/utils/ListOfCategories";
 import { CURRENCIES } from "@/app/utils/ListOfCurrencies";
-import { useAppSelector } from "@/app/hooks/store";
+import { useAppSelector, useAppDispatch } from "@/app/hooks/store";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { createProduct } from "../api-sell";
 import { ICreateProduct } from "../types";
 import { CustomError } from "@/app/utils/CustomError";
 import { toast } from "react-toastify";
+import { fetchProducts, productSlice } from "@/app/store/products/slice";
 
 export default function SellForm() {
   const user = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function SellForm() {
     description: "",
     price: 0,
     currency: 1,
-    category_id: 1,
+    category_id: 0,
     photo_1: null,
   };
 
@@ -54,6 +56,8 @@ export default function SellForm() {
       const res = await mutateAsync(formData);
       toast.success(res?.message);
       router.push("/market");
+      dispatch(productSlice.actions.addProduct(res.data));
+      dispatch(fetchProducts());
     } catch (error: unknown) {
       if (error instanceof Error) {
         const customError = error as CustomError;
@@ -139,7 +143,7 @@ export default function SellForm() {
             </div>
             {isMounted && (
               <>
-                <label htmlFor="category">
+                <label htmlFor="category_id">
                   {formik.touched.category_id && formik.errors.category_id ? (
                     <p className=" text-red-600">{formik.errors.category_id}</p>
                   ) : (
@@ -148,14 +152,13 @@ export default function SellForm() {
                 </label>
                 <Select
                   id={id}
-                  name="category"
+                  name="category_id"
                   options={CATEGORIES}
                   onChange={(option) =>
-                    formik.setFieldValue("category", option?.value)
+                    formik.setFieldValue("category_id", option?.id)
                   }
                   value={CATEGORIES.find(
-                    (option) =>
-                      option.value === formik.values.category_id.toString()
+                    (option) => option.id === formik.values.category_id
                   )}
                   styles={{
                     control: (provided, state) => ({
