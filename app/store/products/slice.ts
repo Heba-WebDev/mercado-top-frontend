@@ -62,6 +62,7 @@ export const productSlice = createSlice({
             .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<Product[]>) => {
                 state.status = 'succeeded';
                 // Add any fetched products to the array
+                state.products = []
                 state.products = state.products.concat(action.payload);
             })
             .addCase(fetchProducts.rejected, (state, action) => {
