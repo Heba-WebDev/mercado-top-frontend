@@ -8,7 +8,7 @@ export default function FailureToFetchProducts() {
         width={120}
         height={100}
         alt="something went wrong"
-        style={{ width: "auto", height: "auto" }}
+        style={{ height: "auto" }}
       />
       <h1 className="text-2xl md:text-5xl font-bold text-center py-8">
         Something went wrong

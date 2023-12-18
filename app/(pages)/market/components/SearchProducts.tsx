@@ -51,7 +51,7 @@ export default function SearchProducts() {
               alt=""
               width={15}
               height={30}
-              style={{ width: "auto" }}
+              style={{ height: "auto" }}
               className=" absolute top-2 md:left-[1px]"
             />
           </div>
@@ -71,7 +71,7 @@ export default function SearchProducts() {
               alt=""
               width={15}
               height={30}
-              style={{ width: "auto" }}
+              style={{ height: "auto" }}
               className=" absolute top-2 md:left-1"
             />
           </div>
