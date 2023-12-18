@@ -19,7 +19,7 @@ export default function ProductUserPrice({
           alt=""
           width={15}
           height={30}
-          style={{ width: "auto" }}
+          style={{ height: "auto" }}
         />
         <p>
           Sold By: <span className=" text-sm font-semibold">{user}</span>
@@ -35,7 +35,7 @@ export default function ProductUserPrice({
           alt=""
           width={15}
           height={30}
-          style={{ width: "auto" }}
+          style={{ height: "auto" }}
         />
         <p>
           Location: <span className=" text-sm font-semibold">{country}</span>

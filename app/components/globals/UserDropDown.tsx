@@ -14,7 +14,7 @@ export default function UserDropDown() {
           alt="account"
           width={30}
           height={10}
-          style={{ width: "auto", height: "auto" }}
+          style={{ height: "auto" }}
         />
         <p>Account</p>
       </div>
@@ -24,7 +24,7 @@ export default function UserDropDown() {
           alt="settings"
           width={30}
           height={10}
-          style={{ width: "auto", height: "auto" }}
+          style={{ height: "auto" }}
         />
         <p>Settings</p>
       </div>
@@ -34,7 +34,7 @@ export default function UserDropDown() {
           alt="account"
           width={30}
           height={10}
-          style={{ width: "auto", height: "auto" }}
+          style={{ height: "auto" }}
         />
         <button onClick={() => disptach(removeUser({}))}>Log-out</button>
       </div>

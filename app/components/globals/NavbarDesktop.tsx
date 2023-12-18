@@ -107,7 +107,7 @@ export default function NavbarDesktop() {
                   alt=""
                   width={30}
                   height={10}
-                  style={{ width: "auto", height: "auto" }}
+                  style={{ height: "auto" }}
                   className=" rounded-full"
                 />
               </button>

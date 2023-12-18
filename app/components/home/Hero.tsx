@@ -36,7 +36,7 @@ export default function Hero() {
           width={1000}
           height={300}
           priority
-          style={{ width: "auto", height: "auto" }}
+          style={{ height: "auto" }}
           className="mx-auto"
           alt="woman in her home with a laptop"
         />
