@@ -1,22 +1,42 @@
 import ProductUserPrice from "./ProductUserPrice";
-import PriceTag from "./PriceTag";
 import ProductTitlte from "./ProductTitle";
 import Tags from "./Tags";
+import { CATEGORIES } from "../../../utils/ListOfCategories";
 import ProductImage from "./ProductImage";
-export default function ProductCard() {
+type product = {
+  title: string;
+  description: string;
+  currency_id: number;
+  price: string;
+  category_id: number;
+  photo_1: string;
+  user_name: string;
+  country: string;
+  posted_at: string;
+};
+export default function ProductCard({
+  title,
+  description,
+  price,
+  currency_id,
+  category_id,
+  photo_1,
+  user_name,
+  posted_at,
+}: product) {
+  const tag = CATEGORIES.filter((x) => x.id === category_id);
   return (
-    <div className="relative flex flex-col gap-4 border p-4 rounded z-50 shadow-md w-full">
-      <PriceTag price={`155`} />
-      <div className=" pt-6">
-        <ProductTitlte title="LG TV X02 2020" />
-        <Tags tag="Electronics" />
+    <div className=" flex flex-col gap-4 border p-4 rounded z-50 shadow-md w-full">
+      <div className="">
+        <ProductTitlte title={title} />
+        <Tags tag={tag[0].label} />
       </div>
-      <ProductImage src="" />
+      <ProductImage src={photo_1} />
       <div>
         <ProductUserPrice
-          user="Heba"
-          date="2Days"
-          price="340"
+          user={user_name}
+          posted_at={posted_at}
+          price={price}
           country="Brazil"
         />
       </div>
