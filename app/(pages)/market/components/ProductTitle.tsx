@@ -4,7 +4,9 @@ export interface title {
 export default function ProductTitlte({ title }: title) {
   return (
     <>
-      <h2 className="text-2xl font-semibold">{title}</h2>
+      <h2 className="text-2xl font-semibold">
+        {title.length > 26 ? `${title.slice(0, 27)}...` : title}
+      </h2>
     </>
   );
 }
