@@ -24,7 +24,7 @@ export default function ProductsList() {
 
   return (
     <section className="mt-12 md:mt-14 md:pt-14 pb-32 grid">
-      {isLoading && (
+      {isLoading && status !== "failed" && (
         <div className="grid grid-cols-3 gap-4">
           <SkeletonCard />
           <SkeletonCard />
@@ -34,7 +34,7 @@ export default function ProductsList() {
           <SkeletonCard />
         </div>
       )}
-      {status === "failed" && <FailureToFetchProducts />}
+      {status === "failed" && !isLoading && <FailureToFetchProducts />}
       {status === "succeeded" && <Products />}
     </section>
   );
