@@ -34,7 +34,7 @@ export default function SellForm() {
     mutationKey: ["product"],
   });
   const initialValues: FormValues = {
-    user_id: user[0]?.user_id,
+    user_id: user[0]?.user_id as string,
     country: user[0]?.country,
     title: "",
     description: "",
