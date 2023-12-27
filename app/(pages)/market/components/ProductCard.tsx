@@ -1,9 +1,11 @@
+import Link from "next/link";
 import ProductUserPrice from "./ProductUserPrice";
 import ProductTitlte from "./ProductTitle";
 import Tags from "./Tags";
 import { CATEGORIES } from "../../../utils/ListOfCategories";
 import ProductImage from "./ProductImage";
 type product = {
+  product_id: string;
   title: string;
   description: string;
   currency_id: number;
@@ -15,6 +17,7 @@ type product = {
   posted_at: string;
 };
 export default function ProductCard({
+  product_id,
   title,
   description,
   price,
@@ -26,7 +29,10 @@ export default function ProductCard({
 }: product) {
   const tag = CATEGORIES.filter((x) => x.id === category_id);
   return (
-    <div className=" flex flex-col gap-4 border p-4 rounded z-50 shadow-md w-full">
+    <Link
+      href={`/market/${product_id}`}
+      className=" flex flex-col gap-4 border p-4 rounded z-50 shadow-md w-full"
+    >
       <div className="">
         <ProductTitlte title={title} />
         <Tags tag={tag[0].label} />
@@ -40,6 +46,6 @@ export default function ProductCard({
           country="Brazil"
         />
       </div>
-    </div>
+    </Link>
   );
 }
