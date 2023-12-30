@@ -1,8 +1,22 @@
+"use client";
 import { useAppDispatch } from "@/app/hooks/store";
 import { removeUser } from "@/app/store/users/slice";
 import Image from "next/image";
-export default function UserDropDown() {
+import { useRouter } from "next/navigation";
+
+export default function UserDropDown({
+  handleUserDropDown,
+}: {
+  handleUserDropDown: () => void;
+}) {
   const disptach = useAppDispatch();
+  const router = useRouter();
+
+  const handleSettingsClick = () => {
+    router.push("/settings");
+    handleUserDropDown();
+  };
+
   return (
     <div
       className=" absolute z-50 bg-white shadow-md rounded-lg w-60 right-1 top-10 border
@@ -18,7 +32,10 @@ export default function UserDropDown() {
         />
         <p>Account</p>
       </div>
-      <div className=" flex items-center gap-2 px-2 justify-between">
+      <button
+        onClick={handleSettingsClick}
+        className=" flex items-center gap-2 px-2 justify-between"
+      >
         <Image
           src="/images/globals/settings.svg"
           alt="settings"
@@ -27,7 +44,7 @@ export default function UserDropDown() {
           style={{ height: "auto" }}
         />
         <p>Settings</p>
-      </div>
+      </button>
       <div className="flex items-center gap-2 px-[10px] justify-between text-red-400">
         <Image
           src="/images/globals/logout.svg"
