@@ -33,9 +33,17 @@ export const usersSlice = createSlice({
             state = []
             localStorage.removeItem('MTUser');
             return state;
+        },
+        updateUser: (state, action: PayloadAction<User>) => {
+            const index = state.findIndex(user => user.user_id === action.payload.user_id);
+            if (index !== -1) {
+                state[index] = action.payload;
+                localStorage.setItem('MTUser', JSON.stringify(state));
+            }
+            return state;
         }
     }
 });
 
 export default usersSlice.reducer;
-export const {addUser, removeUser} = usersSlice.actions;
+export const {addUser, removeUser, updateUser} = usersSlice.actions;
