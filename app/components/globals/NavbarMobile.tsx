@@ -92,15 +92,23 @@ export default function NavbarMobile() {
         <div className="relative">
           <button onClick={handleUserDropDown}>
             <Image
-              src={`${IMAGE_URL}${user[0].profile_picture}`}
+              src={`${
+                user[0].profile_picture.startsWith("http") ||
+                user[0].profile_picture.startsWith("https")
+                  ? user[0].profile_picture
+                  : `${IMAGE_URL}${user[0].profile_picture}`
+              }`}
               alt=""
               width={30}
-              height={10}
-              style={{ height: "auto" }}
-              className=" rounded-full"
+              height={30}
+              objectFit="fill"
+              style={{ height: "30px", width: "30px" }}
+              className=" rounded-full object-fill"
             />
           </button>
-          {openUserDropDown && <UserDropDown />}
+          {openUserDropDown && (
+            <UserDropDown handleUserDropDown={handleUserDropDown} />
+          )}
         </div>
       )}
 

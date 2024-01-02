@@ -1,6 +1,5 @@
 import Link from "next/link";
 import SignUpForm from "./components/Form";
-import { ToastContainer } from "react-toastify";
 
 export default function SignUp() {
   return (

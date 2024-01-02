@@ -1,2 +1,2 @@
 
-export const IMAGE_URL = "https://mercado-top.onrender.com/src/static/profilePictures/"
+export const IMAGE_URL = "http://localhost:3001/src/static/profilePictures/"

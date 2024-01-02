@@ -1,7 +1,6 @@
 import axios from "axios";
 import { CustomError } from "@/app/utils/CustomError";
 import { ApiAxiosInterceptor } from "@/app/react-query/axios";
-import { ICreateProduct } from "../types";
 
 export const createProduct = async (data: FormData) => {
   try {
