@@ -32,23 +32,7 @@ export default function NavbarMobile() {
     setHasMounted(true);
   }, []);
   if (auth) {
-    return (
-      <nav className="relative md:hidden flex items-center justify-between container mx-auto py-4 px-2">
-        <Link
-          href="/"
-          className={`${overlock.className} uppercase flex items-center`}
-        >
-          <Image
-            src="/images/globals/logo.svg"
-            alt="mercado top"
-            width={25}
-            height={50}
-            style={{ width: "25px", height: "50px" }}
-          />
-          <span className=" font-black text-lg">MercadoTop</span>
-        </Link>
-      </nav>
-    );
+    return;
   }
   return (
     <nav className="relative md:hidden flex items-center justify-between container mx-auto py-4 px-2">
