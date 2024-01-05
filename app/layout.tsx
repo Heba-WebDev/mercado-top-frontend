@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/globals/Navbar";
 import Head from "next/head";
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/globals/Footer";
 import ReduxProvider from "./utils/reduxProvider";
 
-const oswald = Raleway({
+const nunito_sans = Nunito_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
 });
@@ -29,7 +29,7 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/favicon.ico"></link>
       </Head>
-      <body className={`${oswald.className} flex flex-col min-h-screen`}>
+      <body className={`${nunito_sans.className} flex flex-col min-h-screen`}>
         <ReduxProvider>
           <Providers>
             <Navbar />

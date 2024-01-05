@@ -1,9 +1,8 @@
-import { ISignUp } from "../types";
 import axios from "axios";
 import { CustomError } from "@/app/utils/CustomError";
 import { ApiAxiosInterceptor } from "@/app/react-query/axios";
 
-export const signUpUser = async (data: ISignUp) => {
+export const signUpUser = async (data: FormData) => {
   try {
     const response = await ApiAxiosInterceptor.post("/api/users/signup", data);
     if (response.status >= 200 && response.status < 300) {
