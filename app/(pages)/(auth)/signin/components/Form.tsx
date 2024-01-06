@@ -12,6 +12,7 @@ import ForgotPassModalOpen from "./ForgotPasswordModal";
 import Spinner from "@/app/components/globals/Spinner";
 import { addUser } from "@/app/store/users/slice";
 import { useAppDispatch } from "@/app/hooks/store";
+import Image from "next/image";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -26,10 +27,11 @@ interface FormValues {
   password: string;
 }
 
-export default function SignUpForm() {
+export default function SignInForm() {
   const disptach = useAppDispatch();
   const router = useRouter();
   const [isForgotPassModalOpen, setIsForgotPassModalOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { mutateAsync } = useMutation({
     mutationFn: signInUser,
     mutationKey: ["signin"],
@@ -73,7 +75,7 @@ export default function SignUpForm() {
       >
         {(formik) => (
           <Form className="grid gap-3">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 relative">
               <label htmlFor="email">
                 {formik.touched.email && formik.errors.email ? (
                   <p className=" text-red-600">{formik.errors.email}</p>
@@ -87,10 +89,18 @@ export default function SignUpForm() {
                 type="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
+                className="border pl-10 focus:bg-[#33A077] focus:bg-opacity-10 py-3  px-2 rounded-lg focus:outline-[#33A077]"
+              />
+              <Image
+                src="/images/globals/email.svg"
+                alt="name"
+                width={30}
+                height={30}
+                style={{ width: "25px", height: "25px" }}
+                className=" absolute top-[52%] left-2"
               />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 relative">
               <label htmlFor="password">
                 {formik.touched.password && formik.errors.password ? (
                   <p className=" text-red-600">{formik.errors.password}</p>
@@ -101,12 +111,42 @@ export default function SignUpForm() {
               <input
                 id="password"
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 autoComplete="true"
                 onChange={formik.handleChange}
                 value={formik.values.password}
-                className="bg-[#F0EDE8] py-3  px-2 rounded-lg focus:outline-[#33A077]"
+                className="border pl-10 focus:bg-[#33A077] focus:bg-opacity-10 py-3  px-2 rounded-lg focus:outline-[#33A077]"
               />
+              <Image
+                src="/images/globals/user-edit.svg"
+                alt="username"
+                width={30}
+                height={30}
+                style={{ width: "25px", height: "25px" }}
+                className=" absolute top-[50%] left-2 opacity-60"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <Image
+                    src="/images/globals/eye.svg"
+                    alt="show password"
+                    width={20}
+                    height={10}
+                    className="absolute top-[53%] right-4"
+                  />
+                ) : (
+                  <Image
+                    src="/images/globals/eye-slash.svg"
+                    alt="show password"
+                    width={20}
+                    height={10}
+                    className="absolute top-[53%] right-4"
+                  />
+                )}
+              </button>
             </div>
             <button
               type="button"
