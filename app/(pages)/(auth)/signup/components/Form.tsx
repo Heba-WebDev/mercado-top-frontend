@@ -351,7 +351,7 @@ export default function SignUpForm() {
             />
             <button
               type="button"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setConShowPassword(!showConfPassword)}
             >
               {showConfPassword ? (
                 <Image
