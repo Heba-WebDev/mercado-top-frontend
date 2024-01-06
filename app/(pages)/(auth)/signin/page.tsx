@@ -1,54 +1,37 @@
-"use client";
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import OauthSignup from "./components/Oauth";
+import SignInImage from "./components/SignInImage";
+import Logo from "../signup/components/Logo";
+import OauthSignin from "./components/Oauth";
 import SignInForm from "./components/Form";
-import { useAppSelector } from "@/app/hooks/store";
-import { useRouter } from "next/navigation";
-import Spinner from "@/app/components/globals/Spinner";
 
-export default function SignIn() {
-  const user = useAppSelector((state) => state.users);
-  const router = useRouter();
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (user.length !== 0) {
-      router.push("/market");
-    }
-    setLoading(false);
-  }, [user, router]);
-
-  if (loading) {
-    return (
-      <div className=" grid justify-center items-center">
-        <Spinner />
-      </div>
-    );
-  }
-
+export default function SignUp() {
   return (
-    <main className="container mx-auto py-14 px-2 grid gap-6">
-      {user.length === 0 && (
-        <>
-          <div className="grid max-w-[750px] mx-auto gap-6">
-            <div className="flex flex-col gap-2">
-              <h1 className=" text-3xl font-semibold">
-                Sign in to your account
-              </h1>
-              <p className="test-base text-[#666]">
-                Welcome back to MercadoTop, Let’s get you signed in!
-              </p>
-            </div>
-            <div>
-              <SignInForm />
-            </div>
-          </div>
-          <Link href="/signup" className="text-[#33A077] text-center underline">
-            Do not have an account? Sign up
-          </Link>
-        </>
-      )}
+    <main className="grid lg:grid-cols-2 gap-4">
+      <SignInImage />
+      <section className="grid max-w-[750px] md:w-full mx-auto gap-6 py-14 px-2">
+        <Logo />
+        <div className="flex flex-col gap-1">
+          <h1 className=" text-3xl font-semibold">
+            Hi, Welcome to MercadoTop!
+          </h1>
+          <p className="test-base text-gray-400">
+            Create an account and enjoy starting MercadoTop
+          </p>
+        </div>
+        <OauthSignin />
+        <div className="flex items-center gap-2">
+          <div className="h-[1px] w-1/2 lg:w-full bg-gray-600 opacity-5"></div>
+          <p className="w-full text-sm text-gray-400 font-bold text-center">
+            or Sign in with Email
+          </p>
+          <div className="h-[1px] w-1/2 lg:w-full bg-gray-600 opacity-5"></div>
+        </div>
+        <SignInForm />
+        <Link href="/signup" className="text-[#33A077] text-center underline">
+          Do not have an account? Sign up
+        </Link>
+      </section>
     </main>
   );
 }

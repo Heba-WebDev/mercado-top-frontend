@@ -6,7 +6,7 @@ import SignUpImage from "./components/SignupImage";
 
 export default function SignUp() {
   return (
-    <main className="grid md:grid-cols-2 gap-4">
+    <main className="grid lg:grid-cols-2 gap-4">
       <SignUpImage />
       <section className="grid max-w-[750px] md:w-full mx-auto gap-6 py-14 px-2">
         <Logo />
