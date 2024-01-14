@@ -5,7 +5,7 @@ export type ICreateProduct = {
     title: string,
     description: string,
     category_id: number,
-    photo_1: File | null,
+    photos: File[] | null,
     price: number,
     currency: number,
     [key: string]: any;
