@@ -7,5 +7,5 @@ export interface FormValues {
   category_id: number;
   price: number;
   currency: number;
-  photo_1: File | null;
+  photos: File[] | null;
 }
