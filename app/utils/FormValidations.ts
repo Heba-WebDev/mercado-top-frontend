@@ -11,7 +11,7 @@ export const sellFormValidationSchema = Yup.object({
     .max(99000, "Must cost 99000 or less")
     .min(10, "Must cost 10 or more")
     .required("Price is required"),
-  category_id: Yup.string().required("Category is required"),
+  category_id: Yup.number().required("Category is required"),
   photo_1: Yup.mixed().required("An image is required"),
 });
 
