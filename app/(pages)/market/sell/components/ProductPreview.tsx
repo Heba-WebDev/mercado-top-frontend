@@ -19,7 +19,7 @@ export default function ProductPreview() {
           />
         </div>
         <button className=" bg-gray-500 py-3  px-1 text-gray-400 rounded-lg w-full">
-          Upload
+          Change thumbnail
         </button>
       </div>
     </section>
