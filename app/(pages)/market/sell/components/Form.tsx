@@ -18,6 +18,7 @@ import Description from "./Description";
 import Price from "./Price";
 import Currency from "./Currency";
 import ProductImages from "./ProductImages";
+import Quantity from "./Quantity";
 
 export default function SellForm() {
   const user = useAppSelector((state) => state.users);
@@ -44,44 +45,41 @@ export default function SellForm() {
     title: "",
     description: "",
     price: 0,
-    currency: 1,
+    currency: 0,
+    quantity: 0,
     category_id: 0,
-    photos: null,
+    photo_1: null,
+    photo_2: null,
+    photo_3: null,
   };
 
   const handleSubmit = async (
     values: ICreateProduct,
     { setSubmitting }: FormikHelpers<ICreateProduct>
   ) => {
-    console.log(values);
-    // try {
-    //   const formData = new FormData();
-    //   Object.keys(values).forEach((key) => {
-    //     formData.append(key, values[key]);
-    //   });
-    //   const res = await mutateAsync(formData);
-    //   toast.success(res?.message);
-    //   router.push("/market");
-    //   dispatch(productSlice.actions.addProduct(res.data));
-    //   dispatch(fetchProducts());
-    // } catch (error: unknown) {
-    //   if (error instanceof Error) {
-    //     const customError = error as CustomError;
-    //     if (customError.isCustomError) {
-    //       toast(customError.response.data.message);
-    //     } else {
-    //       console.error(customError.message);
-    //     }
-    //   }
-    // } finally {
-    //   setSubmitting(false);
-    // }
+    try {
+      const formData = new FormData();
+      Object.keys(values).forEach((key) => {
+        formData.append(key, values[key]);
+      });
+      const res = await mutateAsync(formData);
+      toast.success(res?.message);
+      router.push("/market");
+      dispatch(productSlice.actions.addProduct(res.data));
+      dispatch(fetchProducts());
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        const customError = error as CustomError;
+        if (customError.isCustomError) {
+          toast(customError.response.data.message);
+        } else {
+          console.error(customError.message);
+        }
+      }
+    } finally {
+      setSubmitting(false);
+    }
   };
-  // const formik = useFormik({
-  //   initialValues,
-  //   validationSchema: sellFormValidationSchema,
-  //   onSubmit: handleSubmit,
-  // });
 
   return (
     <main className="container mx-auto py-6 px-2 grid gap-y-8 border rounded-lg mt-6">
@@ -100,13 +98,13 @@ export default function SellForm() {
             <Category formik={formik} id={id} />
             <Price formik={formik} />
             <Currency formik={formik} id={id} />
+            <Quantity formik={formik} />
 
             <button
               type="submit"
-              onClick={formik.submitForm}
               className=" bg-[#33A077] hover:bg-[#227356] py-3  px-1 text-white rounded-lg mt-4 w-full"
             >
-              {formik.isSubmitting ? <Spinner /> : "Sell"}
+              {formik.isSubmitting ? <Spinner /> : "Upload"}
             </button>
           </Form>
         )}
