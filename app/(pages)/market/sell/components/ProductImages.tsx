@@ -16,41 +16,27 @@ export default function ProductImages({ formik }: ProductTitleProps) {
       event.currentTarget.files &&
       event.currentTarget.files.length > 0
     ) {
-      const files = event.currentTarget.files;
-      setImages((prevState) => {
-        if (files !== null) {
-          return prevState.concat(Array.from(files));
-        } else {
-          return prevState;
-        }
-      });
+      const files = Array.from(event.currentTarget.files);
+      setImages((prevState) => [...prevState, ...files]);
+
       const reader = new FileReader();
       reader.onloadend = () => {
         if (reader.result) {
-          setSelectedImages((prevState) => {
-            if (prevState) {
-              return [...prevState, reader.result as string];
-            } else {
-              return [reader.result as string];
-            }
-          });
+          setSelectedImages((prevState) => [
+            ...prevState,
+            reader.result as string,
+          ]);
+          formik.setFieldValue("photos", images);
+        }
+        if (formik.values.photo_1 === null) {
+          formik.setFieldValue("photo_1", files[0]);
+        } else if (formik.values.photo_2 === null) {
+          formik.setFieldValue("photo_2", files[0]);
+        } else if (formik.values.photo_3 === null) {
+          formik.setFieldValue("photo_3", files[0]);
         }
       };
       reader.readAsDataURL(files[0]);
-
-      // const readers = allFiles.map((file) => {
-      //   const reader = new FileReader();
-      //   reader.readAsDataURL(file);
-      //   return new Promise<string | null>((resolve, reject) => {
-      //     reader.onloadend = () => resolve(reader.result as string | null);
-      //     reader.onerror = reject;
-      //   });
-      // });
-
-      // Promise.all(readers).then((images) => {
-      //   const validImages = images.filter((img): img is string => img !== null);
-      //   setSelectedImages(validImages);
-      // });
     }
   };
   const deleteImage = (index: number) => {
@@ -60,6 +46,19 @@ export default function ProductImages({ formik }: ProductTitleProps) {
     );
     setImages(filteredImages);
     setSelectedImages(filteredSelectedImages);
+    formik.setFieldValue("photo_1", null);
+    formik.setFieldValue("photo_2", null);
+    formik.setFieldValue("photo_3", null);
+
+    if (filteredImages[0]) {
+      formik.setFieldValue("photo_1", filteredImages[0]);
+    }
+    if (filteredImages[1]) {
+      formik.setFieldValue("photo_2", filteredImages[1]);
+    }
+    if (filteredImages[2]) {
+      formik.setFieldValue("photo_3", filteredImages[2]);
+    }
   };
   useEffect(() => {
     console.log(images);
@@ -69,8 +68,8 @@ export default function ProductImages({ formik }: ProductTitleProps) {
     <>
       <div className="flex flex-col gap-2">
         <label htmlFor="photos">
-          {formik.touched.photos && formik.errors.photos ? (
-            <p className=" text-red-600">{formik.errors.photos as string}</p>
+          {formik.touched.photo_1 && formik.errors.photo_1 ? (
+            <p className=" text-red-600">{formik.errors.photo_1 as string}</p>
           ) : (
             "Product Image"
           )}
@@ -137,12 +136,6 @@ export default function ProductImages({ formik }: ProductTitleProps) {
                 aria-label="Delete selected image"
                 onClick={() => {
                   deleteImage(index);
-                  // const newAvatars = [...selectedImages];
-                  // newAvatars.splice(index, 1);
-                  // setSelectedImages(newAvatars);
-                  // const newPreviews = [...imgPreview];
-                  // newPreviews.splice(index, 1);
-                  // setImgPreview(newPreviews);
                 }}
               >
                 <Image
