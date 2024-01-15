@@ -27,7 +27,9 @@ export default function Currency({ formik }: ProductTitleProps, id: string) {
             id={id}
             name="currency"
             options={CURRENCIES}
-            onChange={(option) => formik.setFieldValue("currency", option?.id)}
+            onChange={(option) => {
+              formik.setFieldValue("currency", option?.id);
+            }}
             value={CURRENCIES.find(
               (option) => option.value === formik.values.currency.toString()
             )}
