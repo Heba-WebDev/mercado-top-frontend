@@ -85,7 +85,6 @@ export default function NavbarMobile() {
               alt=""
               width={30}
               height={30}
-              objectFit="fill"
               style={{ height: "30px", width: "30px" }}
               className=" rounded-full object-fill"
             />
