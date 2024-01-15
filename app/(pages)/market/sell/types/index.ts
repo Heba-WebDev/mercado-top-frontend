@@ -5,8 +5,11 @@ export type ICreateProduct = {
     title: string,
     description: string,
     category_id: number,
-    photos: File[] | null,
+    photo_1: File | null,
+    photo_2: File | null,
+    photo_3: File | null,
     price: number,
+    quantity: number,
     currency: number,
     [key: string]: any;
 }
