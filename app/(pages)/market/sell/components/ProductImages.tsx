@@ -2,6 +2,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FormikProps } from "formik";
 import { FormValues } from "../interfaces";
+import { useAppDispatch } from "@/app/hooks/store";
+import {
+  addProduct,
+  removeProduct,
+  emptyProducts,
+} from "@/app/store/productPreview/index";
 
 interface ProductTitleProps {
   formik: FormikProps<FormValues>;
@@ -10,6 +16,7 @@ interface ProductTitleProps {
 export default function ProductImages({ formik }: ProductTitleProps) {
   const [images, setImages] = useState<File[]>([]);
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const dispatch = useAppDispatch();
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (
       images.length < 3 &&
@@ -26,6 +33,7 @@ export default function ProductImages({ formik }: ProductTitleProps) {
             ...prevState,
             reader.result as string,
           ]);
+          dispatch(addProduct({ url: reader.result as string }));
           formik.setFieldValue("photos", images);
         }
         if (formik.values.photo_1 === null) {
@@ -41,6 +49,8 @@ export default function ProductImages({ formik }: ProductTitleProps) {
   };
   const deleteImage = (index: number) => {
     const filteredImages = images?.filter((x, i) => i !== index);
+    const removeSelected = selectedImages?.filter((x, i) => i === index);
+    dispatch(removeProduct(removeSelected[0]));
     const filteredSelectedImages = selectedImages?.filter(
       (x, i) => i !== index
     );
@@ -60,9 +70,6 @@ export default function ProductImages({ formik }: ProductTitleProps) {
       formik.setFieldValue("photo_3", filteredImages[2]);
     }
   };
-  useEffect(() => {
-    console.log(images);
-  }, [images]);
 
   return (
     <>
