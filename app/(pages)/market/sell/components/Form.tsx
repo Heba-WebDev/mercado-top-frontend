@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { sellFormValidationSchema } from "@/app/utils/FormValidations";
 import { FormValues } from "../interfaces";
 import Spinner from "@/app/components/globals/Spinner";
-import { Form, Formik, FormikHelpers, useFormik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import { useAppSelector, useAppDispatch } from "@/app/hooks/store";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
@@ -22,6 +22,7 @@ import Quantity from "./Quantity";
 
 export default function SellForm() {
   const user = useAppSelector((state) => state.users);
+  const pagination = useAppSelector((state) => state.pagination);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const id = Math.floor(Math.random() * 10001).toString();

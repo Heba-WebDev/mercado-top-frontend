@@ -9,6 +9,7 @@ import Products from "./Products";
 export default function ProductsList() {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
+  const pagination = useAppSelector((state) => state.pagination);
   const products = useAppSelector((state) => state.products);
   const status = useAppSelector((state) => state.products?.status);
   const error = useAppSelector((state) => state.products?.error);
@@ -20,7 +21,10 @@ export default function ProductsList() {
     if (status === "succeeded") {
       setIsLoading(false);
     }
-  }, [status, dispatch]);
+  }, [status, dispatch, pagination.limit, pagination.page]);
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch, pagination.limit, pagination.page]);
 
   return (
     <section className="mt-12 md:mt-14 md:pt-14 pb-32 grid">
