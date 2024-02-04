@@ -1,4 +1,5 @@
 import AddAProduct from "./AddAProduct";
+import Pagination from "./Pagination";
 import ProductCard from "./ProductCard";
 import SearchProducts from "./SearchProducts";
 import { useAppSelector } from "@/app/hooks/store";
@@ -33,12 +34,10 @@ export default function Products() {
               );
             })}
           </div>
-          {productsArr.length >= 8 && (
-            <>
-              <button className="underline pt-14 flex mx-auto font-semibold">
-                Show more
-              </button>
-            </>
+          {productsArr.length && (
+            <div className="flex items-center justify-end">
+              <Pagination />
+            </div>
           )}
         </div>
       </div>
