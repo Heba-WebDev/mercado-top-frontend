@@ -26,12 +26,13 @@ export default function ProductCard({
   photo_1,
   user_name,
   posted_at,
+  country,
 }: product) {
   const tag = CATEGORIES.filter((x) => x.id === category_id);
   return (
     <Link
       href={`/market/${product_id}`}
-      className=" flex flex-col gap-4 border p-4 rounded z-50 shadow-md w-full"
+      className=" flex flex-col gap-4 border p-4 rounded z-40 shadow-md w-full"
     >
       <div className="">
         <ProductTitlte title={title} />
@@ -43,7 +44,7 @@ export default function ProductCard({
           user={user_name}
           posted_at={posted_at}
           price={price}
-          country="Brazil"
+          country={country}
         />
       </div>
     </Link>
