@@ -29,13 +29,16 @@ export default function ProductsList() {
   return (
     <section className="mt-12 md:mt-14 md:pt-14 pb-32 grid">
       {isLoading && status !== "failed" && (
-        <div className="grid grid-cols-3 gap-4">
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
+        <div className="container mx-auto px-2 grid gap-6">
+          <div className="bg-gray-400 rounded w-44 h-10 justify-self-end"></div>{" "}
+          <div className="grid md:grid-cols-3 gap-4">
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </div>
         </div>
       )}
       {status === "failed" && !isLoading && <FailureToFetchProducts />}

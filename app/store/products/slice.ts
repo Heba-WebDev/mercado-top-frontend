@@ -1,11 +1,8 @@
-"use client"
-import axios from "axios";
+"use client";
 import { RootState } from "..";
 import { ApiAxiosInterceptor } from "@/app/react-query/axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { type PayloadAction } from "@reduxjs/toolkit";
-import { Root } from "postcss";
-
 
 export interface ProductObj {
     product_id: string,
@@ -58,6 +55,27 @@ async (_, { getState }) => {
   return {products: response.data, totalPages: response.data.totalPages};
 });
 
+export const fetchProductsByCategoryLocation = createAsyncThunk('products/fetchProducts',
+async (_, {getState}) => {
+try {
+      const state = getState() as RootState;
+      const {limit, page} = state.pagination;
+      const { category, country } = state.searchProducts;
+      const response = await ApiAxiosInterceptor.get(`/api/products/byCategoryLocation`,{
+        params: {
+            category,
+            country,
+            limit,
+            page
+        }
+      }
+      );
+      return {products: response.data, totalPages: response.data.totalPages};
+    } catch (error) {
+      return console.log(error);
+    }
+});
+
 
 export const productSlice = createSlice({
     name: "products",
@@ -83,7 +101,7 @@ export const productSlice = createSlice({
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message as string;
-            });
+            })
     },
 });
 
