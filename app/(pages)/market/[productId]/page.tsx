@@ -3,6 +3,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { getProductById } from "./api-productDetails";
+import ImagePreview from "./components/ImagePreview";
+import Details from "./components/Details";
+import ProductNav from "./components/ProductNav";
 
 interface product {
   category_id: number;
@@ -39,22 +42,28 @@ export default function Product({ params }: { params: { productId: string } }) {
 
   return (
     <main className=" container mx-auto py-16 px-2 grid">
-      <div className=" flex items-center">
-        <div className=" bg-gray-100  flex justify-center">
-          <Image
-            src={product?.photo_1 as string}
-            alt={product?.title as string}
-            width={1250}
-            height={950}
-            style={{ width: "auto", height: "auto" }}
-            className=" object-cover"
-          />
-        </div>
-        <div className=" w-full flex flex-col">
-          <h2 className=" text-3xl font-bold uppercase">{product?.title}</h2>
-          <p className=" text-red-600 font-semibold">{product?.price}</p>
-          <p className=" text-gray-500">{product?.description}</p>
-        </div>
+      <ProductNav
+        title={product?.title as string}
+        id={product?.product_id as string}
+      />
+      <hr className="my-3 opacity-50" />
+      <div className="flex flex-col-reverse md:grid md:grid-cols-2 py-4 gap-4">
+        <ImagePreview
+          photo_1={product?.photo_1}
+          photo_2={product?.photo_2}
+          photo_3={product?.photo_3}
+          title={product?.title}
+        />
+        <Details
+          title={product?.title as string}
+          description={product?.description as string}
+          price={product?.price as string}
+          currency_id={product?.currency_id as number}
+          country={product?.country as string}
+          user_id={product?.user_id as string}
+          user_name={product?.user_name as string}
+          category={product?.category_id as number}
+        />
       </div>
     </main>
   );
